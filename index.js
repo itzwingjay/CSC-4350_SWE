@@ -24,7 +24,7 @@ mongodb.MongoClient.connect(mongoConnection, function(err,database){
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended" : false}));
 
-var RESTAURANT_COLLECTION = "restaurants";
+var RESTAURANT_COLLECTION = "restaurant";
 router.get("/restaurants", function(req,res){
 	globalDb.collection(RESTAURANT_COLLECTION).find({}).toArray(function(err, docs){
 		if(err){
@@ -34,3 +34,8 @@ router.get("/restaurants", function(req,res){
 		}
 	});
 });
+
+app.use('/',router);
+
+app.listen(3000);
+console.log("Server is running on port 3000");
