@@ -20,11 +20,11 @@ echo off
 
 mongod --dbpath=C:\Users\Larry\Documents\db
 ~~~~
-Note that the path should be where your db folder is
-5. Go to your environment varible settings and add a new path the leads to the bin folder of where your original mongo is installed
-6. Once everything is set. Change the extension to the run.txt file to run.bat
-7. Double click it and it should add a bunch of files to your folder.
-8. Now, everytime you wanna to start the Mongo server just run the run.bat file.
+5. Note that the path should be where your db folder is
+6. Go to your environment varible settings and add a new path the leads to the bin folder of where your original mongo is installed
+7. Once everything is set. Change the extension to the run.txt file to run.bat
+8. Double click it and it should add a bunch of files to your folder.
+9. Now, everytime you wanna to start the Mongo server just run the run.bat file.
 
 
 If there is any question. Please feel free to ask me.
