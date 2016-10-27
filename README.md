@@ -20,7 +20,7 @@ echo off
 
 mongod --dbpath=C:\Users\Larry\Documents\db
 ~~~~
-4.5. Note that the path should be where your db folder is
+Note that the path should be where your db folder is
 5. Go to your environment varible settings and add a new path the leads to the bin folder of where your original mongo is installed
 6. Once everything is set. Change the extension to the run.txt file to run.bat
 7. Double click it and it should add a bunch of files to your folder.
