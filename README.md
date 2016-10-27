@@ -15,11 +15,11 @@ To set up MongoDB:
 2. Install it (default path should be in your C drive; C:\Program Files\MongoDB\Server\3.2\bin)
 3. Create another folder with the name 'db'
 4. Create a run.txt file and add the following to the file:
-~~~~
-echo off
+	*~~~~
+	 echo off
 
-mongod --dbpath=C:\Users\Larry\Documents\db
-~~~~
+	 mongod --dbpath=C:\Users\Larry\Documents\db
+	 ~~~~
 5. Note that the path should be where your db folder is
 6. Go to your environment varible settings and add a new path the leads to the bin folder of where your original mongo is installed
 7. Once everything is set. Change the extension to the run.txt file to run.bat
