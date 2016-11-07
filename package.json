@@ -1,24 +1,16 @@
 {
-  "name": "slack-integration",
+  "name": "myapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/itzwingjay/CSC-4350_SWE.git"
-  },
-  "author": "Lawrence Tsao",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/itzwingjay/CSC-4350_SWE/issues"
-  },
-  "homepage": "https://github.com/itzwingjay/CSC-4350_SWE#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "mongodb": "^2.2.11"
+    "mongoose": "^4.5.4"
   }
 }
