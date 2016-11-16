@@ -10,9 +10,10 @@ var bodyParser  =   require('body-parser');
 var router      =   express.Router();
 
 
+
 //Unless you changed the port, Monogo defaults to 27017
 //You did start mongod right? `mongod --dbpath C:\afolder\mongoStuff` 
-var mongoConnection = "mongodb://localhost:27017/slack";
+var mongoConnection = "mongodb://localhost:27017/slacker";
 
 //Need a  globally scoped variable for using the DB returned from the connection
 var globalDb;
