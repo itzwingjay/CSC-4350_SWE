@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app="restModule" lang="en">
+	<head>
+		<title>Amazing Food Finder</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	</head>
+	<body ng-controller="mainController">
+
+		<!-- Container -->
+			<div class="container-fluid">
+				<!-- Main -->
+					<div class='col-md-4' ng-repeat="rest in restaurants">
+							<h2>{{rest.name}}</h2>
+							<h3>{{rest.hour}}</h3>
+							<h3>{{rest.menu}}</h3>
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/bootstrap.min.js"></script>
+			<script src="core.js"></script>
+			<script src="http://code.jquery.com/jquery.js"></script>
+
+	</body>
+</html>
