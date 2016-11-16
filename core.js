@@ -15,8 +15,8 @@ userModule.controller('mainController', function($scope, $http) {
     
 
     //This is where you're calling the post 
-    $scope.addUser = function() {
-        $http.post('http://localhost:1234/restaurants', angular.toJson($scope.userData)) 
+    $scope.addRest = function() {
+        $http.post('http://localhost:1234/restaurants', angular.toJson($scope.restData)) 
             .success(function(data) {
                 $scope.restData = {}; //clear the user data after the response 
                 $scope.restaurants = $scope.restaurants.concat([data]); //add the user data to our scope variable 
