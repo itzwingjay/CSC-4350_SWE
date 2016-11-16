@@ -1,4 +1,4 @@
-var userModule = angular.module('userModule', []);
+var userModule = angular.module('restModule', []);
 
 userModule.controller('mainController', function($scope, $http) {
     $scope.restData = {};

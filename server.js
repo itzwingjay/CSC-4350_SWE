@@ -3,10 +3,12 @@
 */
 
 var mongodb = require('mongodb');
+var ObjectId = mongodb.ObjectId;
 var express = require('express');
 var app         =   express();
 var bodyParser  =   require('body-parser');
 var router      =   express.Router();
+
 
 //Unless you changed the port, Monogo defaults to 27017
 //You did start mongod right? `mongod --dbpath C:\afolder\mongoStuff` 
@@ -27,10 +29,26 @@ mongodb.MongoClient.connect(mongoConnection, function (err, database) {
 
 });
 
+/* Database schema
+ *  {
+      "_id": <ObjectId>,
+      "Name": <string>,
+      "Hour": <string>,
+      "Menu": {
+        "item1": <string>,
+        "item2": <string>,
+        .
+        .
+        .
+        "itemn": <string>
+      }
+    }
+ */
+// app.use(express.static(__dirname + "/public"));
 
 //Body parser is so we can read the payload from a POST without rolling our own 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({"extended" : false}));
+app.use(bodyParser.urlencoded({"extended" : true}));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -40,13 +58,18 @@ app.use(function(req, res, next) {
 //All we're doing is saying if we GET /myEndPoint, then respond with this JSON 
 //Test this in your browser by going to http://localhost:1234/myEndPoint
 router.get("/myEndPoint",function(req,res){
-    res.json({"aJsonField" : "Hello World"});
+    res.json({ message : "Hello World"});
 });
 
 
+/*
+ *  "/restaurants"
+ *  GET: Find all restaurants
+ *  POST: Create new restaurant
+ */
 
-//Now that the obligatory hello world is out of the way, let's actually do something...
-//If you call this (http://localhost:1234/users in your browser) before you POST anything, you'll get a successful buy empty response 
+
+//If you call this (http://localhost:1234/restaurants in your browser) before you POST anything, you'll get a successful empty response 
 var REST_COLLECTION = "restaurants";
 router.get("/restaurants", function(req,res){
 	globalDb.collection(REST_COLLECTION).find({}).toArray(function(err, docs) {
@@ -80,30 +103,45 @@ app.post("/restaurants", function(req, res) {
 });
 
 
+/*
+ *  "/restaurants/:id"
+ *    GET: find restaurant by id
+ *    PUT: update restaurant by id
+ *    DELETE: delete restuarnt by id
+ */
 
-var EVENT_COLLECTION = "events";
-router.get("/events", function(req,res){
-  globalDb.collection(EVENT_COLLECTION).find({}).toArray(function(err, docs) {
-      if (err) {
-        handleError(res, err.message, "Failed to retrieve events");
-      } else {
-        res.status(200).json(docs);
-      }
-    });
-});
-
-app.post("/events", function(req, res) {
-  var event = req.body;
-  globalDb.collection(EVENT_COLLECTION).insertOne(event, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Error writing event to DB.");
+router.get("/restaurants/:id", function(req,res){
+  globalDb.collection(REST_COLLECTION).findOne({_id: new ObjectId(req.params.id) }, function(err,doc){
+    if(err){
+      handleError(res, err.message, " Failed to get restaurant");
     } else {
-      res.status(201).json(doc.ops[0]);
+      res.status(200).json(doc);
     }
   });
 });
 
+router.put("/restaurants/:id", function(req,res){
+  var updateDoc = req.body;
+  delete updateDoc._id;
 
+  globalDb.collection(REST_COLLECTION).updateOne({_id: new ObjectId(req.params.id)}, updateDoc, function(err,doc){
+    if(err){
+      handleError(res, err.message, "Failed to update restaurant");
+    } else {
+      res.status(204).json({ message: "restaurant updated!"});
+    }
+  });
+});
+
+app.delete("/restaurants/:id", function(req,res){
+  globalDb.collection(REST_COLLECTION).deleteOne({_id: new ObjectId(req.params.id)}, function(err, result){
+    if(err){
+      handleError(res, err.message, "Failed to delete restaurant");
+    } else {
+      res.status(204).json({ message: "restaurant deleted!"});
+    }
+  });
+});
 
 /*
 So you now have a GET and POST you can call via your Front End. 
