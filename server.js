@@ -33,9 +33,9 @@ mongodb.MongoClient.connect(mongoConnection, function (err, database) {
 /* Database schema
  *  {
       "_id": <ObjectId>,
-      "Name": <string>,
-      "Hour": <string>,
-      "Menu": {
+      "name": <string>,
+      "hour": <string>,
+      "menu": {
         "item1": <string>,
         "item2": <string>,
         .
@@ -87,8 +87,7 @@ router.get("/restaurants", function(req,res){
 //curl -H "Content-Type: application/json" -X POST -d '{"Name":"Chipotle"}' http://localhost:1234/restaurants
 //User Postman or whatever you like and POST some info 
 app.post("/restaurants", function(req, res) {
-  var restaurant = req.body;
-
+  var restaurant = req.bodyhm
   //Do some input validation 
   if (!(req.body.Name)) {
     handleError(res, "Invalid JSON", "restaurant name required", 400);
