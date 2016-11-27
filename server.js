@@ -72,6 +72,8 @@ router.get("/myEndPoint",function(req,res){
 
 //If you call this (http://localhost:1234/restaurants in your browser) before you POST anything, you'll get a successful empty response 
 var REST_COLLECTION = "restaurants";
+var HOURS_COLLECTION = "hours";
+
 router.get("/restaurants", function(req,res){
 	globalDb.collection(REST_COLLECTION).find({}).toArray(function(err, docs) {
 	    if (err) {
@@ -82,18 +84,44 @@ router.get("/restaurants", function(req,res){
 	  });
 });
 
+router.get("/hours", function(req,res){
+  globalDb.collection(HOURS_COLLECTION).find({}).toArray(function(err, docs) {
+      if (err) {
+        handleError(res, err.message, "Failed to retrieve hours");
+      } else {
+        res.status(200).json(docs);
+      }
+    });
+});
+
 
 //I like to curl things so to input this manually you would - 
 //curl -H "Content-Type: application/json" -X POST -d '{"Name":"Chipotle"}' http://localhost:1234/restaurants
 //User Postman or whatever you like and POST some info 
 app.post("/restaurants", function(req, res) {
-  var restaurant = req.bodyhm
+  var restaurant = req.body
   //Do some input validation 
   if (!(req.body.Name)) {
     handleError(res, "Invalid JSON", "restaurant name required", 400);
   }
 
   globalDb.collection(REST_COLLECTION).insertOne(restaurant, function(err, doc) {
+    if (err) {
+      handleError(res, err.message, "Error writing restaurant to DB.");
+    } else {
+      res.status(201).json(doc.ops[0]);
+    }
+  });
+});
+
+app.post("/hours", function(req, res) {
+  var hour = req.body
+  //Do some input validation 
+  if (!(req.body.date)) {
+    handleError(res, "Invalid JSON", "hour name required", 400);
+  }
+
+  globalDb.collection(HOURS_COLLECTION).insertOne(hour, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Error writing restaurant to DB.");
     } else {
