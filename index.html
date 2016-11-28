@@ -20,7 +20,7 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Amazing Food Finders</span>
+									<span class="symbol"><img src="images/rap-logo2.svg" alt="" /></span><span class="title">Amazing Food Finders</span>
 								</a>
 
 							<!-- Nav -->
@@ -38,10 +38,6 @@
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="admin.html">Admin Page</a></li>
-<!-- 							<li><a href="generic.html">Ipsum veroeros</a></li>
-							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li> -->
 						</ul>
 					</nav>
 
@@ -56,20 +52,21 @@
 							<section class="tiles">
 								<article class="" ng-repeat="rest in restaurants">
 									<span class="image">
-										<img src={{rest.pic}} alt="" />
+										<img src={{rest.pic}}/>
 									</span> 
 									
 									<a href="{{rest.href}}">
 										
 										<div class="content">
 											<h2>{{rest.name}}</h2>
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>{{rest.date}}</p>
+											<p>{{rest.time}}</p>
 										</div>
 									</a>
 								
 								</article>
 							</section>
-							
+
 						</div>
 					</div>
 			</div>

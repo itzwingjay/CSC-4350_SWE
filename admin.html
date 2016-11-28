@@ -20,7 +20,7 @@
 
 							<!-- Logo -->
 								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Amazing Food Finders</span>
+									<span class="symbol"><img src="images/rap-logo2.png" alt="" /></span><span class="title">Amazing Food Finders</span>
 								</a>
 
 							<!-- Nav -->
@@ -37,11 +37,8 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="generic.html">Ipsum veroeros</a></li>
-							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							<li><a href="../index.html">Home</a></li>
+							<li><a href="../elements.html">Elements</a></li>
 						</ul>
 					</nav>
 
@@ -54,23 +51,24 @@
 								<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
 							</header>
 							<section class="tiles">
-								<article class="" ng-repeat="rest in restaurants">
+								<article class="" ng-repeat="rest in restaurants"  >
 									<span class="image">
-										<img src={{rest.pic}} alt="" />
+										<img src={{rest.pic}}/>
 									</span> 
 									
 									<a href="{{rest.href}}">
 										
 										<div class="content">
 											<h2>{{rest.name}}</h2>
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>{{rest.date}}</p>
+											<p>{{rest.time}}</p>
 										</div>
 									</a>
 								</article>
 							</section>
 						</div>
 						<div id="user-form" class="row">
-							<div class="col-sm-8 col-sm-offset-2 text-center">
+							<div class="col-sm-4 col-sm-offset-2 text-center">
 								<form>
 									<div class="form-group">
 

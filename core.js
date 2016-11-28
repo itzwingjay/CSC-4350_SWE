@@ -2,6 +2,7 @@ var userModule = angular.module('restModule', []);
 
 userModule.controller('mainController', function($scope, $http) {
     $scope.restData = {};
+    $scope.hourData = {};
 
     //This is where you're calling the get 
         $http.get('http://localhost:1234/restaurants')
@@ -12,6 +13,15 @@ userModule.controller('mainController', function($scope, $http) {
             .error(function(data) {
                 console.log('Error: ' + data);
             });
+
+        $http.get('http://localhost:1234/hours')
+            .success(function(data) {
+                $scope.hours = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });    
     
 
     //This is where you're calling the post 
