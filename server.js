@@ -101,7 +101,13 @@ router.get("/hours", function(req,res){
 app.post("/restaurants", function(req, res) {
   var restaurant = req.body
   //Do some input validation 
-  if (!(req.body.Name)) {
+  if (!(req.body.name)) {
+    handleError(res, "Invalid JSON", "restaurant name required", 400);
+  }
+    if (!(req.body.pic)) {
+    handleError(res, "Invalid JSON", "restaurant name required", 400);
+  }
+    if (!(req.body.href)) {
     handleError(res, "Invalid JSON", "restaurant name required", 400);
   }
 

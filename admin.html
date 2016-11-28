@@ -37,11 +37,11 @@
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
-							<li><a href="admin.html">Admin Page</a></li>
-<!-- 							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="generic.html">Ipsum veroeros</a></li>
 							<li><a href="generic.html">Tempus etiam</a></li>
 							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li> -->
+							<li><a href="elements.html">Elements</a></li>
 						</ul>
 					</nav>
 
@@ -66,10 +66,24 @@
 											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
 										</div>
 									</a>
-								
 								</article>
 							</section>
-							
+						</div>
+						<div id="user-form" class="row">
+							<div class="col-sm-8 col-sm-offset-2 text-center">
+								<form>
+									<div class="form-group">
+
+
+										<input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="restData.name">
+										<input type="text" class="form-control input-lg text-center" placeholder="images/default.jpg" ng-model="restData.pic">
+										<input type="text" class="form-control input-lg text-center" placeholder="views/default.html" ng-model="restData.href">
+									</div>
+									<button type="submit" class="btn btn-primary btn-lg" ng-click="addRest()">Add</button>
+								</form>
+
+
+							</div>
 						</div>
 					</div>
 			</div>

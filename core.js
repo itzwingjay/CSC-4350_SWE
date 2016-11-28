@@ -19,7 +19,7 @@ userModule.controller('mainController', function($scope, $http) {
         $http.post('http://localhost:1234/restaurants', angular.toJson($scope.restData)) 
             .success(function(data) {
                 $scope.restData = {}; //clear the user data after the response 
-                $scope.restaurants = $scope.restaurants.concat([data]); //add the user data to our scope variable 
+                $scope.restaurants = $scope.restaurants.concat([data]); //add the data to our scope variable 
                 console.log(data);
             })
             .error(function(data) {
