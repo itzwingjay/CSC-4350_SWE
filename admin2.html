@@ -11,6 +11,7 @@
 		<div class="container">
 
 			<h1>Admin Page</h1>
+			<h3>Restaurants</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -20,19 +21,21 @@
 						<th>Days</th>
 						<th>Time</th>
 						<th>&nbsp;</th>
+						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td><input class="form-control" placeholder="Name" ng-model="restData.name"></td>
 						<td><input class="form-control" placeholder="images/default.jpg" ng-model="restData.pic"></td>
-						<td><input class="form-control" placeholder="views/default.html" ng-model="restData.href"></td>
+						<td><input class="form-control" placeholder="menu.html" ng-model="restData.href"></td>
 						<td><input class="form-control" placeholder="Days" ng-model="restData.date"></td>
 						<td><input class="form-control" placeholder="Time" ng-model="restData.time"></td>
 						<td><button class= "btn btn-primary" ng-click="addRest()">Add</button></td>
 						<td><button class= "btn btn-info" ng-click="updateRest()">Update</button></td>
+						<td><button class= "btn btn-info" ng-click="deselect()">Clear</button><td>
 					</tr>
-					<tr ng-repeat="rest in restaurants">
+					<tr ng-repeat="rest in restaurants | orderBy : 'name'">
 						<td>{{rest.name}}</td>
 						<td>{{rest.pic}}</td>
 						<td>{{rest.href}}</td>
@@ -43,77 +46,41 @@
 					</tr>
 				</tbody>
 			</table>
+			<hr>
+
+			<h3>Menu Items</h3>
+			<table ng-repeat="rest in restaurants | orderBy : 'name'">
+				<caption><h4><b>{{rest.name}}</b></h4></caption>
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Price</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="form-control" placeholder="Item" ng-model="restData.menu.item"></td>
+						<td><input class="form-control" placeholder="Item" ng-model="restData.menu.price"></td>
+						<td><button class= "btn btn-primary" ng-click="addMenu()">Add</button></td>
+						<td><button class= "btn btn-info" ng-click="updateMenu()">Update</button></td>
+						<td><button class= "btn btn-info" ng-click="deselectM()">Clear</button><td>
+					</tr>
+					<tr ng-repeat="r in rest.menu ">
+						<td>{{r.item}}</td>
+						<td>{{r.price}}</td>
+						<td><button class="btn btn-danger" ng-click="deleteMenu(rest._id)">Delete</button></td>
+						<td><button class="btn btn-warning" ng-click="editMenu(rest._id)">Edit</button></td>
+					</tr>
+				</tbody>
+			</table>
+
 		</div>
-		
-			<!-- <div id="wrapper">
-
-				
-					<header id="header">
-						<div class="inner">
-
-							
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/rap-logo2.png" alt="" /></span><span class="title">Amazing Food Finders</span>
-								</a>
-						</div>
-					</header>
-
-				
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="../index.html">Home</a></li>
-							<li><a href="../elements.html">Elements</a></li>
-							<li><a href="../test.html">Test Page</a></li>
-						</ul>
-					</nav>
-
-				
-
-					<div id="main">
-						<div class="inner">
-							<section class="tiles">
-								<article class="" ng-repeat="rest in restaurants"  >
-									<span class="image">
-										<img src={{rest.pic}}/>
-									</span> 
-									
-									<a href="{{rest.href}}">
-										
-										<div class="content">
-											<h2>{{rest.name}}</h2>
-											<p>{{rest.date}}</p>
-											<p>{{rest.time}}</p>
-										</div>
-									</a>
-									<button type='submit' ng-click="deleteRest(restaurants._id)"> Delete</button>
-								</article>
-							</section>
-						</div>
-						<div id="user-form" class="inner row">
-							<div class="col-sm-4 col-sm-offset-2 text-center">
-								<form>
-									<div class="form-group">
-
-
-										<input type="text" class="form-control input-lg text-center" placeholder="Name" ng-model="restData.name">
-										<input type="text" class="form-control input-lg text-center" placeholder="images/default.jpg" ng-model="restData.pic">
-										<input type="text" class="form-control input-lg text-center" placeholder="views/default.html" ng-model="restData.href">
-									</div>
-									<button type="submit" class="btn btn-primary btn-lg" ng-click="addRest()">Add</button>
-								</form>
-
-
-							</div>
-						</div>
-					</div>
-			</div> -->
-
-		
+		<footer>
+		</footer>
 		<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/bootstrap.min.js"></script>
 			<script src="core.js"></script>

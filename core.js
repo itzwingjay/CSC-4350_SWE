@@ -1,6 +1,6 @@
-var userModule = angular.module('restModule', []);
+var restModule = angular.module('restModule', []);
 
-userModule.controller('mainController', function($scope, $http) {
+restModule.controller('mainController', function($scope, $http) {
     $scope.restData = {};
 
     //This is where you're calling the get 
@@ -25,6 +25,7 @@ userModule.controller('mainController', function($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
+
 
     $scope.deleteRest = function(id){ 
         console.log(id);
@@ -60,5 +61,9 @@ userModule.controller('mainController', function($scope, $http) {
                 console.log('Error: ' + data);
             })
     };
+
+    $scope.deselect = function() {
+        $scope.restData = {};
+    }
 
 });

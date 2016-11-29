@@ -1,7 +1,3 @@
-/*
-* I've install mongodb, express and body-parser via NPM
-*/
-
 var mongodb = require('mongodb');
 var ObjectId = mongodb.ObjectId;
 var express = require('express');
@@ -9,13 +5,10 @@ var app         =   express();
 var bodyParser  =   require('body-parser');
 var router      =   express.Router();
 
-
-
-//Unless you changed the port, Monogo defaults to 27017
-//You did start mongod right? `mongod --dbpath C:\afolder\mongoStuff` 
+//Monogo defaults to 27017
 var mongoConnection = "mongodb://localhost:27017/slacker";
 
-//Need a  globally scoped variable for using the DB returned from the connection
+//globally scoped variable for using the DB
 var globalDb;
 
 //This will open the connection and create the DB if it doens't exist
@@ -30,23 +23,7 @@ mongodb.MongoClient.connect(mongoConnection, function (err, database) {
 
 });
 
-/* Database schema
- *  {
-      "_id": <ObjectId>,
-      "name": <string>,
-      "hour": <string>,
-      "menu": {
-        "item1": <string>,
-        "item2": <string>,
-        .
-        .
-        .
-        "itemn": <string>
-      }
-    }
- */
-
-//Body parser is so we can read the payload from a POST without rolling our own 
+//Body parser is so we can read the payload from a POST
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended" : true}));
 app.use(function(req, res, next) {
@@ -56,8 +33,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-//All we're doing is saying if we GET /myEndPoint, then respond with this JSON 
-//Test this in your browser by going to http://localhost:1234/myEndPoint
+ 
+//Test endpoint http://localhost:1234/myEndPoint
 router.get("/myEndPoint",function(req,res){
     res.json({ message : "Hello World"});
 });
@@ -72,7 +49,7 @@ router.get("/myEndPoint",function(req,res){
 
 //If you call this (http://localhost:1234/restaurants in your browser) before you POST anything, you'll get a successful empty response 
 var REST_COLLECTION = "restaurants";
-var HOURS_COLLECTION = "hours";
+
 
 router.get("/restaurants", function(req,res){
 	globalDb.collection(REST_COLLECTION).find({}).toArray(function(err, docs) {
@@ -84,18 +61,7 @@ router.get("/restaurants", function(req,res){
 	  });
 });
 
-router.get("/hours", function(req,res){
-  globalDb.collection(HOURS_COLLECTION).find({}).toArray(function(err, docs) {
-      if (err) {
-        handleError(res, err.message, "Failed to retrieve hours");
-      } else {
-        res.status(200).json(docs);
-      }
-    });
-});
 
-
-//I like to curl things so to input this manually you would - 
 //curl -H "Content-Type: application/json" -X POST -d '{"Name":"Chipotle"}' http://localhost:1234/restaurants
 //User Postman or whatever you like and POST some info 
 app.post("/restaurants", function(req, res) {
@@ -119,23 +85,6 @@ app.post("/restaurants", function(req, res) {
     }
   });
 });
-
-app.post("/hours", function(req, res) {
-  var hour = req.body
-  //Do some input validation 
-  if (!(req.body.date)) {
-    handleError(res, "Invalid JSON", "hour name required", 400);
-  }
-
-  globalDb.collection(HOURS_COLLECTION).insertOne(hour, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Error writing restaurant to DB.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });
-});
-
 
 /*
  *  "/restaurants/:id"
@@ -177,11 +126,6 @@ app.delete("/restaurants/:id", function(req,res){
   });
 });
 
-/*
-So you now have a GET and POST you can call via your Front End. 
-AngularJS - look at $http
-JQuery  - look at get() and post()
-*/
 
 app.use('/',router);
 
