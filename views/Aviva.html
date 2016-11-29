@@ -32,17 +32,18 @@
 							<section>
 								<h2>Menu</h2>
 								<div class="table-wrapper">
-									<table >
+									<table ng-repeat="rest in restaurants">
 										<thead>
 											<tr>
 												<th>Name</th>
 												<th>Price</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>{{r.menu}}</td>
+										<tbody ng-repeat="rest in restaurants">
+											<tr ng-repeat="r in rest.menu ">
+												<td>{{r.item}}</td>
 												<td>{{r.price}}</td>
+												
 											</tr>
 										</tbody>
 									</table>
