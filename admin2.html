@@ -6,44 +6,72 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		
-		
-
 	</head>
-<body ng-controller="mainController">
-		<!-- Wrapper -->
-			<div id="wrapper">
+	<body  ng-controller="mainController">
+		<div class="container">
 
-				<!-- Header -->
+			<h1>Admin Page</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Picture Link</th>
+						<th>href link</th>
+						<th>Days</th>
+						<th>Time</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input class="form-control" placeholder="Name" ng-model="restData.name"></td>
+						<td><input class="form-control" placeholder="images/default.jpg" ng-model="restData.pic"></td>
+						<td><input class="form-control" placeholder="views/default.html" ng-model="restData.href"></td>
+						<td><input class="form-control" placeholder="Days" ng-model="restData.date"></td>
+						<td><input class="form-control" placeholder="Time" ng-model="restData.time"></td>
+						<td><button class= "btn btn-primary" ng-click="addRest()">Add</button></td>
+						<td><button class= "btn btn-info" ng-click="updateRest()">Update</button></td>
+					</tr>
+					<tr ng-repeat="rest in restaurants">
+						<td>{{rest.name}}</td>
+						<td>{{rest.pic}}</td>
+						<td>{{rest.href}}</td>
+						<td>{{rest.date}}</td>
+						<td>{{rest.time}}</td>
+						<td><button class="btn btn-danger" ng-click="deleteRest(rest._id)">Delete</button></td>
+						<td><button class="btn btn-warning" ng-click="editRest(rest._id)">Edit</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+			<!-- <div id="wrapper">
+
+				
 					<header id="header">
 						<div class="inner">
 
-							<!-- Logo -->
+							
 								<a href="index.html" class="logo">
 									<span class="symbol"><img src="images/rap-logo2.png" alt="" /></span><span class="title">Amazing Food Finders</span>
 								</a>
 						</div>
 					</header>
 
-				<!-- Menu -->
+				
 					<nav id="menu">
 						<h2>Menu</h2>
 						<ul>
 							<li><a href="../index.html">Home</a></li>
 							<li><a href="../elements.html">Elements</a></li>
-							<li><a href="../admin2.html">Admin2</a></li>
 							<li><a href="../test.html">Test Page</a></li>
 						</ul>
 					</nav>
 
-				<!-- Main -->
+				
 
 					<div id="main">
 						<div class="inner">
-							<header>
-								<h1>One Stop Shop for your local eateries<br/></h1>
-								<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
-							</header>
 							<section class="tiles">
 								<article class="" ng-repeat="rest in restaurants"  >
 									<span class="image">
@@ -79,7 +107,7 @@
 							</div>
 						</div>
 					</div>
-			</div>
+			</div> -->
 
 		
 		<script src="assets/js/jquery.min.js"></script>

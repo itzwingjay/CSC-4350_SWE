@@ -2,7 +2,6 @@ var userModule = angular.module('restModule', []);
 
 userModule.controller('mainController', function($scope, $http) {
     $scope.restData = {};
-    $scope.hourData = {};
 
     //This is where you're calling the get 
         $http.get('http://localhost:1234/restaurants')
@@ -12,18 +11,8 @@ userModule.controller('mainController', function($scope, $http) {
             })
             .error(function(data) {
                 console.log('Error: ' + data);
-            });
-
-        $http.get('http://localhost:1234/hours')
-            .success(function(data) {
-                $scope.hours = data;
-                console.log(data);
-            })
-            .error(function(data) {
-                console.log('Error: ' + data);
-            });    
+            });  
     
-
     //This is where you're calling the post 
     $scope.addRest = function() {
         $http.post('http://localhost:1234/restaurants', angular.toJson($scope.restData)) 
@@ -35,6 +24,41 @@ userModule.controller('mainController', function($scope, $http) {
             .error(function(data) {
                 console.log('Error: ' + data);
             });
+    };
+
+    $scope.deleteRest = function(id){ 
+        console.log(id);
+        $http.delete('http://localhost:1234/restaurants/' + id)
+            .success(function(data){
+                console.log(data);
+
+            })
+            .error(function(data){
+                console.log('Error: ' + data);
+            })
+    };
+
+    $scope.editRest = function(id){
+        console.log(id);
+        $http.get('http://localhost:1234/restaurants/' + id)
+            .success(function(data){
+                $scope.restData = data;
+                console.log(data);
+            })
+            .error(function(data){
+                console.log('Error: ' + data);
+            });
+    };
+
+    $scope.updateRest = function(){
+        console.log($scope.restData._id);
+        $http.put('http://localhost:1234/restaurants/' + $scope.restData._id, angular.toJson($scope.restData))
+            .success(function(data){
+                console.log(data);
+            })
+            .error(function(data){
+                console.log('Error: ' + data);
+            })
     };
 
 });
